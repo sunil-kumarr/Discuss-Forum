@@ -7,6 +7,7 @@ with the Flask framework. Jinja2 substitutes {{ ... }} blocks with the correspon
  values, given by the arguments provided in the render_template() call.
 '''
 from flask import render_template
+from app.forms import LoginForm
 
 #index function return data against this to urls defined as decorater function
 @app.route("/")
@@ -24,3 +25,8 @@ def index():
         }
     ]
     return render_template('index.html',title='Home',user = user, posts=posts)
+
+@app.route("/login")
+def login():
+    login_form = LoginForm()
+    return render_template('login.html',title='Sign In',form=login_form)
