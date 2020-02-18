@@ -6,7 +6,7 @@ The render_template() function invokes the Jinja2 template engine that comes bun
 with the Flask framework. Jinja2 substitutes {{ ... }} blocks with the corresponding
  values, given by the arguments provided in the render_template() call.
 '''
-from flask import render_template,flash,redirect
+from flask import render_template,flash,redirect,url_for
 from app.forms import LoginForm
 
 #index function return data against this to urls defined as decorater function
@@ -32,5 +32,5 @@ def login():
     if login_form.validate_on_submit():
         flash('Login requested for user {}, remember_me={}'.format(
             login_form.username.data, login_form.remember_me.data))
-        return redirect('/index')
+        return redirect(url_for('index'))
     return render_template('login.html',title='Sign In',form=login_form)
